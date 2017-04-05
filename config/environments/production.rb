@@ -63,16 +63,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   host = 'sample-app-b-perrin.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
-  ActionMailer::Base.smtp_settings = {
-  :port           => '25', # or 2525
-  :address        => ENV['POSTMARK_SMTP_SERVER'],
-  :user_name      => ENV['POSTMARK_API_TOKEN'],
-  :password       => ENV['POSTMARK_API_TOKEN'],
-  :domain         => 'sample-app-b-perrin.heroku.com',
-  :authentication => :cram_md5, # or :plain for plain-text authentication
-  :enable_starttls_auto => true, # or false for unencrypted connection
-}
-ActionMailer::Base.delivery_method = :smtp
+
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
