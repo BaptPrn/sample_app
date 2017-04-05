@@ -64,14 +64,15 @@ Rails.application.configure do
   host = 'sample-app-b-perrin.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => 'plain',
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
-  }
+  :port           => '25', # or 2525
+  :address        => ENV['POSTMARK_SMTP_SERVER'],
+  :user_name      => ENV['POSTMARK_API_TOKEN'],
+  :password       => ENV['POSTMARK_API_TOKEN'],
+  :domain         => 'sample-app-b-perrin.heroku.com',
+  :authentication => :cram_md5, # or :plain for plain-text authentication
+  :enable_starttls_auto => true, # or false for unencrypted connection
+}
+ActionMailer::Base.delivery_method = :smtp
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
